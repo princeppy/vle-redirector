@@ -11,8 +11,11 @@ import { UserAgentApplication } from 'msal';
 import { getUserDetails } from './GraphService';
 import Calendar from './Calendar';
 import Group from './Group';
+import { getGroups } from './GraphService';
+
 
 class App extends Component {
+
   constructor(props) {
     super(props);
 
@@ -31,13 +34,34 @@ class App extends Component {
     this.state = {
       isAuthenticated: false,
       user: {},
-      error: null
+      error: null,
+      groups: {}
     };
 
     if (user) {
       // Enhance user object with data from Graph
       this.getUserProfile();
+       this.state.isAuthenticated=true;
     }
+  }
+
+  async componentDidMount() {   
+    if(this.state.isAuthenticated)
+     { 
+       try {
+        // Get the user's access token
+        var accessToken = await window.msal.acquireTokenSilent({
+          scopes: config.scopes
+        });
+
+        // Get the user's events
+        var groups = await getGroups(accessToken);
+        // Update the array of events in state
+        this.setState({ groups: groups });
+      } catch (err) {
+        console.log(err);
+      }
+     }
   }
 
   async login() {
@@ -54,6 +78,22 @@ class App extends Component {
         user: {},
         error: { message: errParts[1], debug: errParts[0] }
       });
+    }
+    this.setState({
+      isAuthenticated: true     
+    });
+    try {
+      // Get the user's access token
+      var accessToken = await window.msal.acquireTokenSilent({
+        scopes: config.scopes
+      });
+
+      // Get the user's events
+      var groups = await getGroups(accessToken);
+      // Update the array of events in state
+      this.setState({ groups: groups });
+    } catch (err) {
+      console.log(err);
     }
   }
 
@@ -96,16 +136,17 @@ class App extends Component {
                       <center>DIS User</center>
                     </h1>
                   ) : (
-                    <h1>
-                      <center>External User</center>
-                    </h1>
-                  )}
+                      <h1>
+                        <center>External User</center>
+                      </h1>
+                    )}
                   <Welcome
                     {...props}
                     isAuthenticated={this.state.isAuthenticated}
                     user={this.state.user}
                     rawUser={this.state.rawUser}
                     authButtonMethod={this.login.bind(this)}
+                    groups={this.state.groups}
                   />
                 </React.Fragment>
               )}

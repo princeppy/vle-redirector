@@ -108,7 +108,7 @@ export default class NavBar extends React.Component {
       <div>
         <Navbar color='dark' dark expand='md' fixed='top'>
           <Container>
-            <NavbarBrand href='/'>React Graph Tutorial</NavbarBrand>
+            <NavbarBrand href='/'>Deira International School</NavbarBrand>
             <NavbarToggler onClick={this.toggle} />
             <Collapse isOpen={this.state.isOpen} navbar>
               <Nav className='mr-auto' navbar>
@@ -117,11 +117,11 @@ export default class NavBar extends React.Component {
                     Home
                   </RouterNavLink>
                 </NavItem>
-                {calendarLink}
-                {groupLink}
+                {/* {calendarLink}
+                {groupLink} */}
               </Nav>
               <Nav className='justify-content-end' navbar>
-                <NavItem>
+                {/* <NavItem>
                   <NavLink
                     href='https://developer.microsoft.com/graph/docs/concepts/overview'
                     target='_blank'
@@ -129,7 +129,7 @@ export default class NavBar extends React.Component {
                     <i className='fas fa-external-link-alt mr-1'></i>
                     Docs
                   </NavLink>
-                </NavItem>
+                </NavItem> */}
                 <AuthNavItem
                   isAuthenticated={this.props.isAuthenticated}
                   authButtonMethod={this.props.authButtonMethod}
