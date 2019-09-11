@@ -1,33 +1,28 @@
-.App {
+.vle-redirector .container-fluid h1,
+.vle-redirector .container-fluid h4 {
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+.vle-redirector-card .card {
+  margin-top: 40px;
+  align-content: center;
+  text-align: center;
+  padding: 5px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.vle-redirector-card .card-header {
+  /* */
+  padding: initial;
 }
 
-.App-link {
-  color: #61dafb;
+.vle-redirector-card .card-body {
+  text-align: center;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.vle-redirector-card .info-mg-top {
+  margin: 5px;
+}
+
+.vle-redirector-card .info-mg-top a button {
+  margin: 5px;
 }
