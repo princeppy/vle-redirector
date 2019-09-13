@@ -15,8 +15,7 @@ class App extends Component {
     this.userAgentApplication = new UserAgentApplication({
       auth: {
         clientId: config.appId,
-        authority:
-          'https://login.microsoftonline.com/8b652d2a-eb2e-4624-8fb8-2418d14113d7/v2.0'
+        // authority: 'https://login.microsoftonline.com/8b652d2a-eb2e-4624-8fb8-2418d14113d7/v2.0'
       },
       cache: {
         cacheLocation: 'localStorage',
@@ -128,21 +127,12 @@ class App extends Component {
                 <div className='vle-redirector-card card-body'>
                   {!this.state.isAuthenticated ? (
                     <div className='info-mg-top'>
-                      {/*
-                      <a href='https://login.microsoftonline.com/login.srf?wa=wsignin1.0&whr=disdubai.ae&wreply=https://vle.disdubai.ae&LoginOptions=1'>
-                        <button className='btn btn-primary btn-mg-top' type='submit' >Login</button>
+                      {/* <a href='https://login.microsoftonline.com/login.srf?wa=wsignin1.0&whr=disdubai.ae&wreply=https://vle.disdubai.ae&LoginOptions=1'><button className='btn btn-primary btn-mg-top' type='submit'>Login</button></a> */}
+                      {/* <a href='https://fs.disdubai.ae/adfs/ls?wa=wsignin1.0&wtrealm=urn%3asharepoint%3avle&wctx='>Login</a> */}
+                      {/* <button className='btn btn-primary btn-mg-top' type='submit' onClick={this.login.bind(this)}>Login</button> */}
+                      <a href='https://fs.disdubai.ae/adfs/ls/?wa=wsignin1.0&wtrealm=https://vledashboard.azurewebsites.net/&wctx=rm=0&id=passive&ru=%2f'>
+                        <button className='btn btn-primary btn-mg-top' type='submit'>Login</button>
                       </a>
-                       */}
-                      <a href='https://fs.disdubai.ae/adfs/ls?wa=wsignin1.0&wtrealm=urn%3asharepoint%3avle&wctx='>
-                        Login
-                      </a>
-                      <button
-                        className='btn btn-primary btn-mg-top'
-                        type='submit'
-                        onClick={this.login.bind(this)}
-                      >
-                        Login
-                      </button>
                     </div>
                   ) : (
                     <React.Fragment>

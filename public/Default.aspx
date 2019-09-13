@@ -41,9 +41,6 @@
 </head>
 <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <a href="https://fs.disdubai.ae/adfs/ls/?wa=wsignin1.0&wtrealm=https://vledashboard.azurewebsites.net/&wctx=rm=0&id=passive&ru=%2f">LogIn</a>
-    <a href="https://fs.disdubai.ae/adfs/ls/?wa=wsignout1.0&wreply=https://vledashboard.azurewebsites.net/">Logout</a>
-    <asp:Label ID="wrapper" runat="server" />
     <div id="root"></div>
     <!--
       This HTML file is a template.
