@@ -14,7 +14,9 @@ class App extends Component {
 
     this.userAgentApplication = new UserAgentApplication({
       auth: {
-        clientId: config.appId
+        clientId: config.appId,
+        authority:
+          'https://login.microsoftonline.com/8b652d2a-eb2e-4624-8fb8-2418d14113d7/v2.0'
       },
       cache: {
         cacheLocation: 'localStorage',
@@ -56,18 +58,24 @@ class App extends Component {
   // }
 
   async login() {
+    // alert('async login()');
+
     try {
+      // await this.userAgentApplication.loginRedirect({
       await this.userAgentApplication.loginPopup({
         scopes: config.scopes,
         prompt: 'select_account'
+        // prompt: 'login'
       });
+
       await this.getUserProfile();
     } catch (err) {
-      var errParts = err.split('|');
+      console.log(err);
+      // var errParts = err.split('|');
       this.setState({
         isAuthenticated: false,
-        user: {},
-        error: { message: errParts[1], debug: errParts[0] }
+        user: {}
+        // error: { message: errParts[1], debug: errParts[0] }
       });
     }
 
@@ -120,13 +128,20 @@ class App extends Component {
                 <div className='vle-redirector-card card-body'>
                   {!this.state.isAuthenticated ? (
                     <div className='info-mg-top'>
-                      {/* <a href="https://login.windows.net/common/oauth2/logout?post_logout_redirect_uri=https://vle1.disdubai.ae"><button className="btn btn-primary btn-mg-top" type="submit" id="deplCenter">Logout 0</button></a> */}
+                      {/*
+                      <a href='https://login.microsoftonline.com/login.srf?wa=wsignin1.0&whr=disdubai.ae&wreply=https://vle.disdubai.ae&LoginOptions=1'>
+                        <button className='btn btn-primary btn-mg-top' type='submit' >Login</button>
+                      </a>
+                       */}
+                      <a href='https://fs.disdubai.ae/adfs/ls?wa=wsignin1.0&wtrealm=urn%3asharepoint%3avle&wctx='>
+                        Login
+                      </a>
                       <button
                         className='btn btn-primary btn-mg-top'
                         type='submit'
                         onClick={this.login.bind(this)}
                       >
-                        &nbsp;&nbsp;&nbsp;&nbsp;Login&nbsp;&nbsp;&nbsp;&nbsp;
+                        Login
                       </button>
                     </div>
                   ) : (
