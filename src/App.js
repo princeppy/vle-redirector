@@ -15,8 +15,12 @@ class App extends Component {
     this.userAgentApplication = new UserAgentApplication({
       auth: {
         clientId: config.appId,
+        // redirectUri: 'https://vle.disdubai.ae',
+        redirectUri: 'http://localhost:3000/',
+        // postLogoutRedirectUri: 'https://vle.disdubai.ae',
+        postLogoutRedirectUri: 'http://localhost:3000/',
         authority:
-          'https://login.microsoftonline.com/8b652d2a-eb2e-4624-8fb8-2418d14113d7/v2.0'
+          'https://login.microsoftonline.com/8b652d2a-eb2e-4624-8fb8-2418d14113d7/'
       },
       cache: {
         cacheLocation: 'localStorage',
@@ -122,26 +126,29 @@ class App extends Component {
             <div className='col-lg-3 col-sm-1'></div>
             <div className='col-lg-6 col-sm-10'>
               <div className='vle-redirector-card card'>
-                <div className='card-header'>
+                <div className='vle-redirector-card card-header'>
                   <h4>Virtual Learning Environment (VLE) - Primary</h4>
                 </div>
                 <div className='vle-redirector-card card-body'>
                   {!this.state.isAuthenticated ? (
                     <div className='info-mg-top'>
-                      {/*
-                      <a href='https://login.microsoftonline.com/login.srf?wa=wsignin1.0&whr=disdubai.ae&wreply=https://vle.disdubai.ae&LoginOptions=1'>
-                        <button className='btn btn-primary btn-mg-top' type='submit' >Login</button>
-                      </a>
-                       */}
-                      <a href='https://fs.disdubai.ae/adfs/ls?wa=wsignin1.0&wtrealm=urn%3asharepoint%3avle&wctx='>
-                        Login
-                      </a>
+                      {/* <a href='https://login.microsoftonline.com/login.srf?wa=wsignin1.0&whr=disdubai.ae&wtrealm=urn%3asharepoint%3avle&wreply=https://vle.disdubai.ae&LoginOptions=1'>
+                        <button
+                          className='btn btn-primary btn-mg-top'
+                          type='submit'
+                        >
+                          {'  -   '}
+                          Login{'  -   '}
+                        </button>
+                      </a> */}
+                      {/* <a href='https://fs.disdubai.ae/adfs/ls?wa=wsignin1.0&wtrealm=urn%3asharepoint%3avle&wctx='> Login </a> */}
                       <button
                         className='btn btn-primary btn-mg-top'
                         type='submit'
                         onClick={this.login.bind(this)}
                       >
-                        Login
+                        {' '}
+                        Login{' '}
                       </button>
                     </div>
                   ) : (
@@ -239,14 +246,15 @@ class App extends Component {
                   {this.state.isAuthenticated &&
                     !!this.state.user.userPrincipalName && (
                       <div className='info-mg-top'>
-                        {/* <a href="https://login.windows.net/common/oauth2/logout?post_logout_redirect_uri=https://vle1.disdubai.ae"><button className="btn btn-primary btn-mg-top" type="submit" id="deplCenter">Logout 0</button></a> */}
-                        {/* <a href='https://login.microsoftonline.com/common/oauth2/logout?post_logout_redirect_uri=https://vle1.disdubai.ae'> */}
+                        {/* <a href="https://login.windows.net/common/oauth2/logout?post_logout_redirect_uri=https://vle.disdubai.ae"><button className="btn btn-primary btn-mg-top" type="submit" id="deplCenter">Logout 0</button></a> */}
+                        {/* <a href='https://login.microsoftonline.com/common/oauth2/logout?post_logout_redirect_uri=https://vle.disdubai.ae'> */}
                         <button
                           className='btn btn-primary btn-mg-top'
                           type='submit'
                           onClick={this.logout.bind(this)}
                         >
-                          &nbsp;&nbsp;&nbsp;&nbsp;Logout&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;MSAL
+                          Logout&nbsp;&nbsp;&nbsp;&nbsp;
                         </button>
                       </div>
                     )}
@@ -330,7 +338,37 @@ class App extends Component {
               </div>
             </div>
           </div>
+          <br />
 
+          <div className='row'>
+            <div className='col-lg-3 col-sm-1'></div>
+            <div className='col-lg-6 col-sm-10'>
+              <div className='vle-redirector-card card'>
+                <div className='vle-redirector-card card-header'>
+                  <h4>CCA - SOCS</h4>
+                </div>
+                <div className='vle-redirector-card card-body'>
+                  <div className='info-mg-top'>
+                    <a href='https://www.socscms.com/login/28056/pupil'>
+                      <button
+                        className='btn btn-primary btn-mg-top'
+                        type='submit'
+                      >
+                        &nbsp;&nbsp;&nbsp;&nbsp;Login&nbsp;&nbsp;&nbsp;&nbsp;
+                      </button>
+                    </a>
+                    <button
+                      className='btn btn-primary btn-mg-top'
+                      type='submit'
+                      onClick={this.logout.bind(this)}
+                    >
+                      &nbsp;&nbsp;&nbsp;&nbsp;Logout&nbsp;&nbsp;&nbsp;&nbsp;
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
           <br />
           <div className='row'>
             <div className='col-lg-3 col-sm-1'></div>
